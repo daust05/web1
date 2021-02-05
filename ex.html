@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf- 8">
+        <titile></title>
+        <style>
+            .class_example{
+                font_weight:bold;
+                background-color:black;
+                color:red;
+            }
+            #id_example{
+                color:pink;
+            }
+            span{ 
+                <!-- 모든 span 태그에 적용-->
+                color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>JavaScript</h1>
+        <script>
+            document.write(1+1);
+        </script>
+        <input type = "button" value = "hi" onclick ="alert('hi')">
+        <input type = "text" value = 'hi' onchange ="alert('changed')">
+        <input type = "text" onkeydown = "alert('key down!')">
+        <div style="font-weight:bold;color:powderblue;">div example</div>
+        <span class="class_example">span with class style</span>
+        <span id= "id_exmaple" class="class_example">span with id style</span>
+        <span> only span </span>
+    </body>
+</html>
