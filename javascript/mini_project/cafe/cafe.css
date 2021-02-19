@@ -1,0 +1,25 @@
+.Menu {
+    width: '280px';
+    height: '292px';
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    position: relative;
+}
+
+li {
+    list-style: none;
+}
+
+li dl dd {
+    font-size: 14px;
+    color: #444;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
