@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang = 'ko'>
+    <head>
+        <meta charset = 'utf-8'>
+        <title>Async</title>
+    </head>
+    <body>
+        <script>
+            function timeoutPromise(interval){
+                return new Promise((resolve, reject)=>{
+                    setTimeout(function(){
+                        resolve("done");
+                    },interval);
+                });
+            }
+
+            async function slowTest(){
+                await timeoutPromise(3000);
+                await timeoutPromise(3000);
+                await timeoutPromise(3000);
+            }
+
+            async function fastTest(){
+                const timePromise1 = timeoutPromise(3000);
+                const timePromise2 = timeoutPromise(3000);
+                const timePromise3 = timeoutPromise(3000);
+
+                await timePromise1;
+                await timePromise2;
+                await timePromise3;
+            }
+
+            function stopTime(){
+                let finishTime = Date.now();
+                let timeTaken = finishTime - startTime;
+                console.log("Time taken in milliseconds: " + timeTaken);
+            }
+
+            let startTime = Date.now();
+            slowTest().then(()=>{
+                console.log("Slow result: ")
+                stopTime();
+            });
+            startTime = Date.now();
+            fastTest().then(()=>{
+                console.log("Fast result: ")
+                stopTime();
+            });
+
+        </script>
+    </body>
+</html>

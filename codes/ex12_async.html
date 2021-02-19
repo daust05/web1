@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = 'en-US'>
+    <head>
+        <meta charset = 'utf-8'>
+        <title>Async</title>
+    </head>
+    <body>
+        <script>
+            // basic example
+            let hello = function(){return "Hello"};
+            let hello_a = async function(){return "Hello"};
+            //          = async () => {return "Hello"};
+            
+            /* test case
+            console.log(hello());
+            hello_a().then(message => console.log(message));
+            hello_a().then(console.log);
+            */
+            
+            // my code
+            let coffee = 'https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg';
+
+            //비동기 함수 promise 처럼 사용가능
+            async function getCoffee(){
+                let response = await fetch(coffee);
+                let blob = await response.blob();
+
+                let url = URL.createObjectURL(blob);     
+                let img = document.createElement('img');
+                img.src = url;
+                document.body.appendChild(img);
+            }
+
+            //비동기 함수가 아니라 promise처럼 사용은 못하지만 비동기 함수를 갖고있음(fetch)
+            function drink(){
+                fetch(coffee).then(response=>{
+                    return response.blob();
+                }).then(myBlob => {
+                    return URL.createObjectURL(myBlob);
+                }).then(url => {
+                    let img = document.createElement('img');
+                    img.src = url;
+                    document.body.appendChild(img);
+                });
+            }
+
+            drink();
+            getCoffee()
+            .catch(e => {
+                console.log("Error: " + e.message);
+            });
+
+
+        </script>
+    </body>
+</html>

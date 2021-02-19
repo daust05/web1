@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Promise 3 </title>
+    </head>
+    <body>
+        <button class = 'a'>a</button>
+        <button class = 'b'>b</button>
+        <script>
+            let button_a = document.querySelector('.a');
+            let button_b = document.querySelector('.b');
+            let status = 'a';
+
+            function buttonPromise(time){
+                return new Promise((resolve, reject)=>{
+                setTimeout(function(){
+                    if(status === 'a'){
+                        resolve('a!');
+                    }
+                    else {
+                        reject('not a!');
+                    }
+                },time)
+                });
+            }
+
+            buttonPromise(2000)
+            .then(message => {
+                alert(message);
+            })
+            .catch(e => {
+                console.log(`error: "${e}"`)
+            });
+
+            button_a.addEventListener('click',()=>status = 'a');
+            button_b.addEventListener('click',()=>status = 'b');
+        </script>
+    </body>
+<html>
+
