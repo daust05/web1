@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>Promise</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+    // .then() 블럭 내부의 executor 함수에 Promise에서 반환된 값이 파라미터로 전달됩니다..
+        let promise = fetch('src/coffee.jpg');
+        let promise2 = promise.then(response => response.blob());
+        let promise3 = promise2.then(myBlob => {
+            let objectURL = URL.createObjectURL(myBlob);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        })
+        let errorCase = promise3.catch(e => {
+            console.log('There has been a problem with your fetch operation: ' + e.message);
+        });
+    </script>
+  </body>
+</html>

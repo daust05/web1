@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+  </head>
+  <body>
+    <script>
+        let coffee = 'https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg';
+        let tea = 'https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/tea.jpg';
+        let description = 'https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/description.txt';
+
+        function fetchAndDecode(url, type) {
+          return fetch(url).then(response => {
+            if(type === 'blob'){
+              return response.blob();
+            } else if(type === 'text'){
+              return response.text();
+            }
+          })
+          .catch(e => {
+            console.log('There has been a problem with your  operation:' + e.message);
+          });
+        }
+
+        let a = fetchAndDecode(coffee,'blob');
+        let b = fetchAndDecode(tea, 'blob');
+        let c = fetchAndDecode(description, 'text');
+
+        Promise.all([a, b, c]).then(values => {
+          let objectURL1 = URL.createObjectUrl(values[0]);
+        })
+    </script>
+  </body>
+</html>
