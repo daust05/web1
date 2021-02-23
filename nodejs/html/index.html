@@ -2,11 +2,25 @@
 <html>
     <head>
         <meta charset= 'utf-8'>
+        <style>
+            #search_site{
+                width:200px;
+                height:20px;
+            }
+        </style>
     </head>
     <body>
         <h>HTML</h>
         <ul>
-            <li><a href = "/?id=first">first</a></li>
-        <ul>
+            {list}
+        </ul>
+        <form action = "http://localhost:3000/move_site" method = "post">
+            <p>
+                <textarea id = 'search_site' name = "search_site" placeholder = "site name"></textarea>
+            </p>
+            <p>
+                <input type = "submit">
+            </p>
+        </form>
     </body>
 </html>
